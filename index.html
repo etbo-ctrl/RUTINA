@@ -76,7 +76,7 @@
     @media (max-width:640px){ body{ padding:18px } .grid{ grid-template-columns:1fr } header{ flex-direction:column; align-items:flex-start; gap:8px } }
     @media (print){ body{ background:white; color:black } .card{ box-shadow:none; border:1px solid #eee } }
 
-    /* Estilo botón modo oscuro */
+    /* Botón modo oscuro animado */
     #darkModeToggle{
       position: fixed;
       top: 20px;
@@ -89,18 +89,20 @@
       cursor: pointer;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
       padding: 2px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      transition: background 0.3s, justify-content 0.3s;
       z-index: 9999;
     }
     #darkModeToggle div{
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
       background: #0066ff;
-      transition: all 0.3s;
+      transition: transform 0.3s ease, background 0.3s ease;
+      transform: translateX(0);
+    }
+    body.dark #darkModeToggle div {
+      transform: translateX(22px);
     }
 
     /* Tarjetas ocupan toda la pantalla en pantallas muy grandes */
@@ -135,7 +137,6 @@
     </header>
 
     <section class="grid" aria-label="Rutina por día">
-
       <!-- Día 1 -->
       <article class="card" aria-labelledby="d1">
         <div class="top">
@@ -148,22 +149,15 @@
           </div>
           <div class="meta">Prioridad: piernas</div>
         </div>
-
-        <ul class="ex" aria-label="Ejercicios día 1">
+        <ul class="ex">
           <li><div class="ex-index">1</div><div class="ex-body"><div class="ex-name">Sentadilla (Squat)</div><div class="ex-sub">Objetivo: fuerza de piernas</div><div class="ex-pres">Series/Reps: 4–5 x 4–6 (intensidad: pesada — 80–90% 1RM). Descanso: 2–3 min.</div></div></li>
           <li><div class="ex-index">2</div><div class="ex-body"><div class="ex-name">Zancada Búlgara (Bulgarian Split Squat)</div><div class="ex-sub">Unilateral — estabilidad y fuerza</div><div class="ex-pres">Series/Reps: 3–4 x 6–8 por pierna (intensidad: moderada-alta). Descanso: 90–120s.</div></div></li>
           <li><div class="ex-index">3</div><div class="ex-body"><div class="ex-name">Curl Femoral (Extensiones de Isquio)</div><div class="ex-sub">Fortalece isquiosurales — sustituto del RDL</div><div class="ex-pres">Series/Reps: 3–4 x 8–12 (intensidad: moderada). Descanso: 60–90s.</div></div></li>
           <li><div class="ex-index">4</div><div class="ex-body"><div class="ex-name">Salto al Cajón (Box Jump)</div><div class="ex-sub">Explosividad — trabajo pliométrico</div><div class="ex-pres">Series/Reps: 3 x 4–6 saltos controlados. Descanso: 90–120s.</div></div></li>
         </ul>
-
-        <div class="core"><strong>Core:</strong> Plancha — 3 x 30–45s por lado (intensidad: mantenida)</div>
-
+        <div class="core"><strong>Core:</strong> Plancha — 3 x 30–45s por lado</div>
         <div class="note">Nota: calienta 8–12 minutos (movilidad dinámica + activación glútea). Para fuerza pesada prioriza técnica y progresión semanal.</div>
-
-        <footer class="actions" aria-hidden="true">
-          <button class="btn ghost">Editar</button>
-          <button class="btn primary">Marcar hecho</button>
-        </footer>
+        <footer class="actions"><button class="btn ghost">Editar</button><button class="btn primary">Marcar hecho</button></footer>
       </article>
 
       <!-- Día 2 -->
@@ -178,22 +172,15 @@
           </div>
           <div class="meta">Prioridad: empuje/tirón y salud del hombro</div>
         </div>
-
-        <ul class="ex" aria-label="Ejercicios día 2">
-          <li><div class="ex-index">1</div><div class="ex-body"><div class="ex-name">Press de Banca o Press Militar</div><div class="ex-sub">Alterna según objetivo: pecho (banca) o hombro (militar)</div><div class="ex-pres">Series/Reps: 4 x 4–6 (si busca fuerza) o 3 x 8–10 (si busca resistencia/hipertrofia). Descanso: 2–3 min (fuerza) / 60–90s (resistencia).</div></div></li>
-          <li><div class="ex-index">2</div><div class="ex-body"><div class="ex-name">Remo con Barra o Mancuernas</div><div class="ex-sub">Fuerza de tirón — equilibrio posterior</div><div class="ex-pres">Series/Reps: 4 x 6–8. Descanso: 90–120s.</div></div></li>
-          <li><div class="ex-index">3</div><div class="ex-body"><div class="ex-name">Face Pull / Rotación Externa</div><div class="ex-sub">Prevención de hombro y salud escapular</div><div class="ex-pres">Series/Reps: 3 x 12–15 (intensidad ligera-moderada). Descanso: 60s.</div></div></li>
+        <ul class="ex">
+          <li><div class="ex-index">1</div><div class="ex-body"><div class="ex-name">Press de Banca o Press Militar</div><div class="ex-sub">Alterna según objetivo: pecho (banca) o hombro (militar)</div><div class="ex-pres">Series/Reps: 4 x 4–6 o 3 x 8–10. Descanso: 2–3 min / 60–90s.</div></div></li>
+          <li><div class="ex-index">2</div><div class="ex-body"><div class="ex-name">Remo con Barra o Mancuernas</div><div class="ex-sub">Fuerza de tirón — equilibrio posterior</div><div class="ex-pres">4 x 6–8. Descanso: 90–120s.</div></div></li>
+          <li><div class="ex-index">3</div><div class="ex-body"><div class="ex-name">Face Pull / Rotación Externa</div><div class="ex-sub">Prevención de hombro y salud escapular</div><div class="ex-pres">3 x 12–15. Descanso: 60s.</div></div></li>
           <li><div class="ex-index">4</div><div class="ex-body"><div class="ex-name">Elevaciones Laterales</div><div class="ex-sub">Aislamiento del deltoides</div><div class="ex-pres">3 x 12–15. Descanso: 45–60s.</div></div></li>
         </ul>
-
-        <div class="core"><strong>Core:</strong> Plancha — 3 x 30–45s por lado (intensidad: mantenida)</div>
-
+        <div class="core"><strong>Core:</strong> Plancha — 3 x 30–45s por lado</div>
         <div class="note">Nota: incorpora trabajo de movilidad de hombro después del entrenamiento; evita cargas máximas si tienes molestias en el hombro.</div>
-
-        <footer class="actions" aria-hidden="true">
-          <button class="btn ghost">Editar</button>
-          <button class="btn primary">Marcar hecho</button>
-        </footer>
+        <footer class="actions"><button class="btn ghost">Editar</button><button class="btn primary">Marcar hecho</button></footer>
       </article>
 
       <!-- Día 3 -->
@@ -208,22 +195,15 @@
           </div>
           <div class="meta">Prioridad: potencia / desplazamientos</div>
         </div>
-
-        <ul class="ex" aria-label="Ejercicios día 3">
-          <li><div class="ex-index">1</div><div class="ex-body"><div class="ex-name">Burpees</div><div class="ex-sub">Cardio + fuerza total</div><div class="ex-pres">Formato circuito: 3 rondas x 10–12 repeticiones. Descanso entre ejercicios: 15–30s; entre rondas: 90–120s.</div></div></li>
-          <li><div class="ex-index">2</div><div class="ex-body"><div class="ex-name">Sentadilla con Salto (Jump Squat)</div><div class="ex-sub">Explosividad de piernas</div><div class="ex-pres">3 x 8–10 (controlando aterrizaje). Descanso: 60–90s.</div></div></li>
-          <li><div class="ex-index">3</div><div class="ex-body"><div class="ex-name">Prensa de Piernas</div><div class="ex-sub">Potencia de tren inferior usando máquina</div><div class="ex-pres">3 x 8–10 repeticiones. Descanso: 60–90s.</div></div></li>
-          <li><div class="ex-index">4</div><div class="ex-body"><div class="ex-name">Remo en Máquina</div><div class="ex-sub">Potencia de espalda y core, velocidad controlada</div><div class="ex-pres">4 series x 20–30m / 30s intensidad alta. Descanso: 60s.</div></div></li>
+        <ul class="ex">
+          <li><div class="ex-index">1</div><div class="ex-body"><div class="ex-name">Burpees</div><div class="ex-sub">Cardio + fuerza total</div><div class="ex-pres">3 rondas x 10–12 repeticiones. Descanso entre ejercicios: 15–30s; entre rondas: 90–120s.</div></div></li>
+          <li><div class="ex-index">2</div><div class="ex-body"><div class="ex-name">Sentadilla con Salto (Jump Squat)</div><div class="ex-sub">Explosividad de piernas</div><div class="ex-pres">3 x 8–10. Descanso: 60–90s.</div></div></li>
+          <li><div class="ex-index">3</div><div class="ex-body"><div class="ex-name">Prensa de Piernas</div><div class="ex-sub">Potencia de tren inferior usando máquina</div><div class="ex-pres">3 x 8–10. Descanso: 60–90s.</div></div></li>
+          <li><div class="ex-index">4</div><div class="ex-body"><div class="ex-name">Remo en Máquina</div><div class="ex-sub">Potencia de espalda y core, velocidad controlada</div><div class="ex-pres">4 x 20–30m / 30s. Descanso: 60s.</div></div></li>
         </ul>
-
-        <div class="core"><strong>Core:</strong> Plancha — 3 x 30–45s por lado (intensidad: mantenida)</div>
-
+        <div class="core"><strong>Core:</strong> Plancha — 3 x 30–45s por lado</div>
         <div class="note">Nota: circuito orientado a potencia — prioriza calidad técnica. Si estás muy cargado después de partidos, reduce volumen (2 rondas).</div>
-
-        <footer class="actions" aria-hidden="true">
-          <button class="btn ghost">Editar</button>
-          <button class="btn primary">Marcar hecho</button>
-        </footer>
+        <footer class="actions"><button class="btn ghost">Editar</button><button class="btn primary">Marcar hecho</button></footer>
       </article>
 
     </section>
@@ -246,16 +226,11 @@
 
   <script>
     const toggle = document.getElementById('darkModeToggle');
-    const circle = toggle.querySelector('div');
-
     toggle.addEventListener('click', () => {
       document.body.classList.toggle('dark');
-      if(document.body.classList.contains('dark')){
-        circle.style.justifySelf = "end";
-      } else {
-        circle.style.justifySelf = "start";
-      }
     });
   </script>
 </body>
 </html>
+
+
