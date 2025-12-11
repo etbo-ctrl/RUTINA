@@ -18,6 +18,7 @@
       font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
       color-scheme: light;
     }
+
     body.dark {
       --bg: #0f172a;
       --card: #1e293b;
@@ -26,22 +27,38 @@
       --accent-2: #06b6d4;
       --glass: rgba(255,255,255,0.1);
       color: #f1f5f9;
-      background: linear-gradient(180deg, #0f172a, #1e293b 100%);
     }
+
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      background:linear-gradient(180deg,var(--bg),#eef2ff 100%);
       padding:32px;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
       color:#0f172a;
       line-height:1.4;
       transition: background 0.3s, color 0.3s;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
 
-    .container{ max-width:980px; margin:0 auto }
+    /* Fondo */
+    body::before {
+      content:"";
+      position: fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background: url('https://cdn.discordapp.com/attachments/1320203365430460457/1445179416270340289/image333.png?ex=693bedf6&is=693a9c76&hm=bf76f01d4361ac0b1943ca15668eb3dc20f0573db5331898e12fd11921c37305&') center/cover no-repeat;
+      filter: blur(8px) brightness(0.7);
+      z-index:-1;
+      transition: filter 0.3s ease;
+    }
+
+    body.dark::before {
+      filter: blur(8px) brightness(0.5);
+    }
+
+    .container{ max-width:980px; margin:0 auto; position: relative; z-index: 1; }
     header{ display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:22px }
     h1{ font-size:1.4rem; margin:0 }
     p.lead{ margin:0; color:var(--muted); font-size:0.95rem }
@@ -74,7 +91,6 @@
 
     @media (max-width:920px){ .grid{ grid-template-columns:repeat(2,1fr) } }
     @media (max-width:640px){ body{ padding:18px } .grid{ grid-template-columns:1fr } header{ flex-direction:column; align-items:flex-start; gap:8px } }
-    @media (print){ body{ background:white; color:black } .card{ box-shadow:none; border:1px solid #eee } }
 
     /* Botón modo oscuro animado */
     #darkModeToggle{
@@ -113,13 +129,12 @@
         gap: 24px;
         padding: 0 32px;
       }
-      .card {
-        min-height: 300px;
-      }
+      .card { min-height: 300px; }
     }
   </style>
 </head>
 <body>
+
   <!-- Botón modo oscuro -->
   <button id="darkModeToggle" aria-label="Cambiar modo">
     <div></div>
@@ -151,12 +166,11 @@
         </div>
         <ul class="ex">
           <li><div class="ex-index">1</div><div class="ex-body"><div class="ex-name">Sentadilla (Squat)</div><div class="ex-sub">Objetivo: fuerza de piernas</div><div class="ex-pres">Series/Reps: 4–5 x 4–6 (intensidad: pesada — 80–90% 1RM). Descanso: 2–3 min.</div></div></li>
-          <li><div class="ex-index">2</div><div class="ex-body"><div class="ex-name">Zancada Búlgara (Bulgarian Split Squat)</div><div class="ex-sub">Unilateral — estabilidad y fuerza</div><div class="ex-pres">Series/Reps: 3–4 x 6–8 por pierna (intensidad: moderada-alta). Descanso: 90–120s.</div></div></li>
-          <li><div class="ex-index">3</div><div class="ex-body"><div class="ex-name">Curl Femoral (Extensiones de Isquio)</div><div class="ex-sub">Fortalece isquiosurales — sustituto del RDL</div><div class="ex-pres">Series/Reps: 3–4 x 8–12 (intensidad: moderada). Descanso: 60–90s.</div></div></li>
-          <li><div class="ex-index">4</div><div class="ex-body"><div class="ex-name">Salto al Cajón (Box Jump)</div><div class="ex-sub">Explosividad — trabajo pliométrico</div><div class="ex-pres">Series/Reps: 3 x 4–6 saltos controlados. Descanso: 90–120s.</div></div></li>
+          <li><div class="ex-index">2</div><div class="ex-body"><div class="ex-name">Zancada Búlgara</div><div class="ex-sub">Unilateral — estabilidad y fuerza</div><div class="ex-pres">3–4 x 6–8 por pierna. Descanso: 90–120s.</div></div></li>
+          <li><div class="ex-index">3</div><div class="ex-body"><div class="ex-name">Curl Femoral</div><div class="ex-sub">Fortalece isquiosurales</div><div class="ex-pres">3–4 x 8–12. Descanso: 60–90s.</div></div></li>
+          <li><div class="ex-index">4</div><div class="ex-body"><div class="ex-name">Salto al Cajón</div><div class="ex-sub">Explosividad</div><div class="ex-pres">3 x 4–6 saltos. Descanso: 90–120s.</div></div></li>
         </ul>
-        <div class="core"><strong>Core:</strong> Plancha — 3 x 30–45s por lado</div>
-        <div class="note">Nota: calienta 8–12 minutos (movilidad dinámica + activación glútea). Para fuerza pesada prioriza técnica y progresión semanal.</div>
+        <div class="core"><strong>Core:</strong> Plancha — 3 x 30–45s</div>
       </article>
 
       <!-- Día 2 -->
@@ -172,13 +186,12 @@
           <div class="meta">Prioridad: empuje/tirón y salud del hombro</div>
         </div>
         <ul class="ex">
-          <li><div class="ex-index">1</div><div class="ex-body"><div class="ex-name">Press de Banca o Press Militar</div><div class="ex-sub">Alterna según objetivo: pecho (banca) o hombro (militar)</div><div class="ex-pres">Series/Reps: 4 x 4–6 o 3 x 8–10. Descanso: 2–3 min / 60–90s.</div></div></li>
-          <li><div class="ex-index">2</div><div class="ex-body"><div class="ex-name">Remo con Barra o Mancuernas</div><div class="ex-sub">Fuerza de tirón — equilibrio posterior</div><div class="ex-pres">4 x 6–8. Descanso: 90–120s.</div></div></li>
-          <li><div class="ex-index">3</div><div class="ex-body"><div class="ex-name">Face Pull / Rotación Externa</div><div class="ex-sub">Prevención de hombro y salud escapular</div><div class="ex-pres">3 x 12–15. Descanso: 60s.</div></div></li>
-          <li><div class="ex-index">4</div><div class="ex-body"><div class="ex-name">Elevaciones Laterales</div><div class="ex-sub">Aislamiento del deltoides</div><div class="ex-pres">3 x 12–15. Descanso: 45–60s.</div></div></li>
+          <li><div class="ex-index">1</div><div class="ex-body"><div class="ex-name">Press Banca / Militar</div><div class="ex-sub">Pecho o hombro</div><div class="ex-pres">4 x 4–6 / 3 x 8–10. Descanso: 2–3 min / 60–90s.</div></div></li>
+          <li><div class="ex-index">2</div><div class="ex-body"><div class="ex-name">Remo con Barra / Mancuernas</div><div class="ex-sub">Tirón — espalda</div><div class="ex-pres">4 x 6–8. Descanso: 90–120s.</div></div></li>
+          <li><div class="ex-index">3</div><div class="ex-body"><div class="ex-name">Face Pull / Rotación Externa</div><div class="ex-sub">Hombro y escápula</div><div class="ex-pres">3 x 12–15. Descanso: 60s.</div></div></li>
+          <li><div class="ex-index">4</div><div class="ex-body"><div class="ex-name">Elevaciones Laterales</div><div class="ex-sub">Deltoides</div><div class="ex-pres">3 x 12–15. Descanso: 45–60s.</div></div></li>
         </ul>
-        <div class="core"><strong>Core:</strong> Plancha — 3 x 30–45s por lado</div>
-        <div class="note">Nota: incorpora trabajo de movilidad de hombro después del entrenamiento; evita cargas máximas si tienes molestias en el hombro.</div>
+        <div class="core"><strong>Core:</strong> Plancha — 3 x 30–45s</div>
       </article>
 
       <!-- Día 3 -->
@@ -188,37 +201,21 @@
             <div class="day-badge">Día 3</div>
             <div>
               <div id="d3" style="font-weight:700">Jueves — Potencia y Agilidad</div>
-              <div class="meta">Circuito de alta intensidad orientado a pádel</div>
+              <div class="meta">Circuito gym / máquinas</div>
             </div>
           </div>
           <div class="meta">Prioridad: potencia / desplazamientos</div>
         </div>
         <ul class="ex">
-          <li><div class="ex-index">1</div><div class="ex-body"><div class="ex-name">Burpees</div><div class="ex-sub">Cardio + fuerza total</div><div class="ex-pres">3 rondas x 10–12 repeticiones. Descanso entre ejercicios: 15–30s; entre rondas: 90–120s.</div></div></li>
-          <li><div class="ex-index">2</div><div class="ex-body"><div class="ex-name">Sentadilla con Salto (Jump Squat)</div><div class="ex-sub">Explosividad de piernas</div><div class="ex-pres">3 x 8–10. Descanso: 60–90s.</div></div></li>
-          <li><div class="ex-index">3</div><div class="ex-body"><div class="ex-name">Prensa de Piernas</div><div class="ex-sub">Potencia de tren inferior usando máquina</div><div class="ex-pres">3 x 8–10. Descanso: 60–90s.</div></div></li>
-          <li><div class="ex-index">4</div><div class="ex-body"><div class="ex-name">Remo en Máquina</div><div class="ex-sub">Potencia de espalda y core, velocidad controlada</div><div class="ex-pres">4 x 20–30m / 30s. Descanso: 60s.</div></div></li>
+          <li><div class="ex-index">1</div><div class="ex-body"><div class="ex-name">Burpees</div><div class="ex-sub">Cardio + fuerza</div><div class="ex-pres">3 rondas x 10–12. Descanso: 15–30s entre ejercicios, 90–120s rondas.</div></div></li>
+          <li><div class="ex-index">2</div><div class="ex-body"><div class="ex-name">Jump Squat</div><div class="ex-sub">Explosividad piernas</div><div class="ex-pres">3 x 8–10. Descanso: 60–90s.</div></div></li>
+          <li><div class="ex-index">3</div><div class="ex-body"><div class="ex-name">Prensa de Piernas</div><div class="ex-sub">Máquina — tren inferior</div><div class="ex-pres">3 x 8–10. Descanso: 60–90s.</div></div></li>
+          <li><div class="ex-index">4</div><div class="ex-body"><div class="ex-name">Remo en Máquina</div><div class="ex-sub">Espalda / core</div><div class="ex-pres">4 x 20–30m. Descanso: 60s.</div></div></li>
         </ul>
-        <div class="core"><strong>Core:</strong> Plancha — 3 x 30–45s por lado</div>
-        <div class="note">Nota: circuito orientado a potencia — prioriza calidad técnica. Si estás muy cargado después de partidos, reduce volumen (2 rondas).</div>
+        <div class="core"><strong>Core:</strong> Plancha — 3 x 30–45s</div>
       </article>
 
     </section>
-
-    <section style="margin-top:22px;">
-      <div style="background:var(--card); padding:14px; border-radius:12px; box-shadow:var(--shadow); transition: background 0.3s, color 0.3s">
-        <h2 style="margin:0 0 8px 0">Guía rápida de intensidad y progresión</h2>
-        <ul class="note">
-          <li><strong>Pesada / fuerza:</strong> 4–6 reps, 3–5 series, carga alta (≈80–90% 1RM). Enfócate en técnica y recuperación.</li>
-          <li><strong>Moderada / hipertrofia:</strong> 6–12 reps, 3–4 series, carga media. Ideal para glúteo/cuádriceps e isquios.</li>
-          <li><strong>Explosividad / potencia:</strong> 3–6 reps (saltos/lanzamientos), series cortas, máxima velocidad de ejecución.</li>
-          <li><strong>Resistencia / acondicionamiento:</strong> 10–15+ reps o formato circuito con poco descanso.</li>
-          <li><strong>Progresión semanal:</strong> añade 2.5–5% de carga o 1–2 repeticiones por ejercicio cada semana (o añade una serie) hasta 4 semanas; después descarga 1 semana.</li>
-          <li><strong>Calentamiento:</strong> 8–12 min (movilidad, activación glútea, trabajo de rotador de hombro). Siempre antes de sesiones pesadas o explosivas.</li>
-        </ul>
-      </div>
-    </section>
-
   </div>
 
   <script>
@@ -227,5 +224,6 @@
       document.body.classList.toggle('dark');
     });
   </script>
+
 </body>
 </html>
